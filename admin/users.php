@@ -4,6 +4,15 @@
 $users = User::find_all();
 
 
+///////Delete//////////
+if (isset($_POST['delete'])) {
+    $id = $_POST['id'];
+    $use = new User();
+    $use->delete($id);
+    echo "<script>alert('User Deleted Succesfully');document.location='users.php'</script>";
+
+}
+
 ?>
 
 
@@ -26,6 +35,7 @@ $users = User::find_all();
                                     	<th>Address</th>
                                     	<th>Pincode</th>
                                     	<th>Mobile</th>
+                                    	<th>Delete</th>
                                     </thead>
                                     <tbody>
 <?php while ($user = $users->fetch_object()) : ?> 
@@ -36,7 +46,14 @@ $users = User::find_all();
                                         	<td><?php echo $user->address?></td>
                                         	<td><?php echo $user->pincode?></td>
                                         	<td><?php echo $user->mobile?></td>
-                                        	
+                                        	<td>
+                                                <form action="" method="POST">
+                                                <div class="form-group">
+                                                <input type="hidden"  name="id" value="<?php echo $user->id; ?>">
+                                                <input type="submit" value="Delete" name="delete" class="btn btn-danger">
+                                                </div>
+                                                </form>
+                                            </td>
                                         </tr>
 <?php endwhile; ?>                    
                                     </tbody>

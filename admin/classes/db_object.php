@@ -20,6 +20,42 @@ class Db_object
         $result = $db->query($sql);
         return $result;
         }
+
+        public function create($input){
+            global $db;
+            $sql = "INSERT INTO ".static::$table.' ('.implode(',',static::$field) .") VALUES ('".implode("','",$input)."')"; 
+            if(!$db->query($sql)){
+                die('Query Failed In Create Method ' . mysqli_error($db));
+            }
+
+        }
+
+        public function update($input){
+            global $db;
+            $combine = array_combine(static::$update_field,$input);
+            $sql = "UPDATE " . static::$table . " SET ";
+            foreach ($combine as $key => $value):
+            $sql.= "$key='$value',";
+            endforeach;
+            $trim = rtrim($sql, ',');
+            $trim.=" WHERE id=" . $input[0];
+            // var_dump($trim);
+        if (!$db->query($trim)) {
+            die('Query Failed In Update Method ' . mysqli_error($db));
+        }
+
+        }
+
+
+        public function delete($id){
+            global $db;
+            $sql = "DELETE FROM ".static::$table. " WHERE id=$id";
+            if (!$db->query($sql)) {
+                die('Query Failed In Delete Method ' . mysqli_error($db));
+            }
+         
+            
+        }
         
 
 

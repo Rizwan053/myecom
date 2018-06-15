@@ -70,6 +70,12 @@
                         <p>Products</p>
                     </a>
                 </li>
+                <li>
+                    <a href="categories.php">
+                        <i class="ti-view-list-alt"></i>
+                        <p>Categories</p>
+                    </a>
+                </li>
          
             </ul>
     	</div>
