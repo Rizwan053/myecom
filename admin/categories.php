@@ -20,8 +20,8 @@ if(isset($_POST['submit'])){
 if(isset($_POST['update'])){
     $cat = new Category();
     $id= $_POST['id'];
-    $name = [$id,$_POST['name']];
-    $cat->update($name);
+    $name = [$_POST['name']];
+    $cat->update($name,$id);
         echo "<script>alert('Category Updated Succesfully');document.location='categories.php'</script>";
    
 

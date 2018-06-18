@@ -11,7 +11,7 @@ if(isset($_POST['update'])){
     $directory = 'images';
     $file_name = $_FILES['image']['name'];
     $input=[
-        $_POST['id'],
+        // $_POST['id'],
         $_POST['category_id'],
         $_POST['name'],
         $_POST['description'],
@@ -25,7 +25,7 @@ if(isset($_POST['update'])){
     
     else{
             $input = [
-                $_POST['id'],
+                // $_POST['id'],
                 $_POST['category_id'],
                 $_POST['name'],
                 $_POST['description'],
@@ -36,8 +36,8 @@ if(isset($_POST['update'])){
     }
 
 $product = new Product();
-$product->update($input);
-    echo "<script>alert('Product UpdatedSuccesfully');document.location='products.php'</script>";
+$product->update($input, $_GET['id']);
+    echo "<script>alert('Product Updated Succesfully');document.location='products.php'</script>";
 
 }
 } else {

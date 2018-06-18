@@ -1,4 +1,16 @@
+<?php 
+ob_start();
+session_start();
+
+?>
 <?php include('classes/init.php') ?>
+
+<?php 
+if(empty($_SESSION['name'])){
+    header('location:/login.php');
+}
+
+?>
 
 <!doctype html>
 <html lang="en">
@@ -117,9 +129,9 @@
                               </ul>
                         </li>
 						<li>
-                            <a href="#">
-								<i class="ti-settings"></i>
-								<p>Settings</p>
+                            <a href="/logout.php">
+								<i class="ti-user"></i>
+								<p>Log out</p>
                             </a>
                         </li>
                     </ul>

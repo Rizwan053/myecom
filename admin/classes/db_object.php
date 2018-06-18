@@ -30,15 +30,15 @@ class Db_object
 
         }
 
-        public function update($input){
+        public function update($input, $id){
             global $db;
-            $combine = array_combine(static::$update_field,$input);
+            $combine = array_combine(static::$field,$input);
             $sql = "UPDATE " . static::$table . " SET ";
             foreach ($combine as $key => $value):
             $sql.= "$key='$value',";
             endforeach;
             $trim = rtrim($sql, ',');
-            $trim.=" WHERE id=" . $input[0];
+            $trim.=" WHERE id=" . $id;
             // var_dump($trim);
         if (!$db->query($trim)) {
             die('Query Failed In Update Method ' . mysqli_error($db));
